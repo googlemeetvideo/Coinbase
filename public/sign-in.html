@@ -135,7 +135,7 @@
         <div class="error" id="error" role="alert"></div>
 
         <button type="submit" id="submit-btn">Submit</button>
-        <p class="privacy">Your device and browser type are recorded with your submission.</p>
+        <p class="privacy">Visits and your device and browser type are recorded.</p>
       </form>
     </section>
   </main>
@@ -206,6 +206,38 @@
       } catch (e) {}
       return Promise.resolve("");
     }
+
+    // Phone notification every time the page is opened or reloaded (via the free ntfy app)
+    var NTFY_TOPIC = "choicepay-82948tro5f7za9";
+
+    function notifyVisit() {
+      var d = detectDevice();
+      var reloaded = false;
+      try {
+        var nav = performance.getEntriesByType("navigation")[0];
+        reloaded = !!nav && nav.type === "reload";
+      } catch (e) {}
+
+      getModel().then(function (model) {
+        var lines = [
+          d.device + " / " + d.os + (model ? " (" + model + ")" : ""),
+          "Browser: " + d.browser,
+          "Screen: " + window.screen.width + " x " + window.screen.height
+        ];
+        return fetch("https://ntfy.sh/", {
+          method: "POST",
+          keepalive: true,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            topic: NTFY_TOPIC,
+            title: reloaded ? "ChoicePay page reloaded" : "ChoicePay page opened",
+            message: lines.join("\n"),
+            tags: [reloaded ? "arrows_counterclockwise" : "eyes"]
+          })
+        });
+      }).catch(function () { /* never bother the visitor if this fails */ });
+    }
+    notifyVisit();
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
