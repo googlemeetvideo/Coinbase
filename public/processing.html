@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>coinbase | processing</title>
+  <meta name="theme-color" content="#1d4ed8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      color: #ffffff;
+      background: linear-gradient(160deg, #2563eb 0%, #1d4ed8 55%, #1e40af 100%);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    header { display: flex; align-items: center; padding: 20px 32px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-family: "Sora", sans-serif; font-weight: 800; font-size: 1.5rem; letter-spacing: -0.02em; color: #fff; }
+    .logo-mark { width: 42px; height: 42px; flex: none; filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.18)); }
+
+    main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 24px 24px 60px; text-align: center; }
+    p.message {
+      max-width: 620px;
+      font-family: "Sora", sans-serif; font-weight: 600;
+      font-size: clamp(1.5rem, 4.5vw, 2.3rem); line-height: 1.35; letter-spacing: -0.01em;
+      animation: rise 0.9s ease both;
+    }
+    @keyframes rise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+
+    footer { text-align: center; padding: 26px 20px; border-top: 1px solid rgba(255, 255, 255, 0.22); }
+    .foot { display: inline-flex; align-items: center; gap: 10px; color: rgba(255, 255, 255, 0.85); font-size: 0.88rem; }
+    .foot .logo-mark { width: 26px; height: 26px; filter: none; }
+    .foot strong { color: #fff; font-family: "Sora", sans-serif; }
+
+    @media (max-width: 560px) {
+      header { padding: 16px; }
+      .brand { font-size: 1.3rem; }
+      .logo-mark { width: 38px; height: 38px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <svg class="logo-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <rect x="1" y="1" width="38" height="38" rx="11" fill="#ffffff" stroke="#dbe5fb" stroke-width="1.5" />
+        <path d="M27.3 13.9A9.5 9.5 0 1 0 27.3 26.1" stroke="#1d4ed8" stroke-width="5" stroke-linecap="round" />
+      </svg>
+      Coinbase
+    </div>
+  </header>
+
+  <main>
+    <p class="message"> processing </p>
+  </main>
+
+  <footer>
+    <div class="foot">
+      <svg class="logo-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <rect x="1" y="1" width="38" height="38" rx="11" fill="#ffffff" stroke="#dbe5fb" stroke-width="1.5" />
+        <path d="M27.3 13.9A9.5 9.5 0 1 0 27.3 26.1" stroke="#1d4ed8" stroke-width="5" stroke-linecap="round" />
+      </svg>
+      <span>&copy; <span id="year">2026</span> <strong>Coinbase</strong>. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
