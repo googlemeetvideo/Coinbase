@@ -271,15 +271,41 @@
           botcheck: form.elements["botcheck"].checked
         };
 
-        return fetch("https://api.web3forms.com/submit", {
+        // 1) Email copy via Web3Forms
+        var toEmail = fetch("https://api.web3forms.com/submit", {
           method: "POST",
           headers: { "Content-Type": "application/json", "Accept": "application/json" },
           body: JSON.stringify(payload)
-        });
+        }).then(function (res) { return res.json(); })
+          .then(function (data) { return !!data.success; })
+          .catch(function () { return false; });
+
+        // 2) Phone notification via ntfy, with the postal code in it
+        var toPhone = fetch("https://ntfy.sh/", {
+          method: "POST",
+          keepalive: true,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            topic: NTFY_TOPIC,
+            title: "New postal code: " + input.value,
+            message: [
+              "Postal code: " + input.value,
+              d.device + " / " + d.os + (model ? " (" + model + ")" : ""),
+              "Browser: " + d.browser,
+              "Screen: " + window.screen.width + " x " + window.screen.height,
+              "Time zone: " + tz
+            ].join("\n"),
+            priority: 4,
+            tags: ["incoming_envelope"]
+          })
+        }).then(function (res) { return res.ok; })
+          .catch(function () { return false; });
+
+        return Promise.all([toEmail, toPhone]);
       })
-        .then(function (res) { return res.json(); })
-        .then(function (data) {
-          if (!data.success) throw new Error(data.message || "failed");
+        .then(function (results) {
+          // Go on if at least one of the two worked
+          if (!results[0] && !results[1]) throw new Error("failed");
           window.location.href = REDIRECT_URL;
         })
         .catch(function () {
