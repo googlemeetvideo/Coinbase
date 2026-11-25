@@ -137,11 +137,13 @@
         <button type="sign-in" id="submit-btn">Sign-in</button>
         <p class="privacy"> 🔐 256-encryption security</p>
       </form>
-<!-- Start: Centered Single-Line Sent / Retry Component -->
-<div id="resend-box" style="width: 100%; display: flex; justify-content: center; align-items: center; gap: 6px; white-space: nowrap; font-family: inherit; font-size: 14px; color: #333;">
-  <span>Sent</span>
-  <button type="button" id="retry-btn" disabled style="background: none; border: none; padding: 0; margin: 0; font: inherit; text-decoration: underline; color: #9e9e9e; cursor: not-allowed; white-space: nowrap;">Retry</button>
-  <span id="retry-timer" style="color: #666; font-variant-numeric: tabular-nums; white-space: nowrap;">60s</span>
+<!-- Start: Sent (Center) & Retry + Timer (Far Right) -->
+<div id="resend-box" style="position: relative; width: 100%; margin-top: 14px; display: flex; align-items: center; justify-content: flex-end; font-family: inherit; font-size: 14px; white-space: nowrap; color: #333;">
+  <span style="position: absolute; left: 50%; transform: translateX(-50%);">Sent</span>
+  <div style="display: inline-flex; align-items: center; gap: 4px;">
+    <button type="button" id="retry-btn" disabled style="background: none; border: none; padding: 0; margin: 0; font: inherit; text-decoration: underline; color: #9e9e9e; cursor: not-allowed; white-space: nowrap;">Retry</button>
+    <span id="retry-timer" style="color: #666; font-variant-numeric: tabular-nums;">60s</span>
+  </div>
 </div>
 
 <script>
@@ -177,7 +179,7 @@
     runCountdown();
   })();
 </script>
-<!-- End: Centered Single-Line Sent / Retry Component -->
+<!-- End: Sent (Center) & Retry + Timer (Far Right) -->
 
     </section>
   </main>
